@@ -10,7 +10,7 @@ const Navbar = () => {
         <MdDraw className='text-[29px] text-gray-900'/>
         <h1 className='font-bold text-3xl'>Codraw</h1>
        </Link>
-      <Button href='/register'>
+      <Button href='/auth/register'>
            Sign Up
       </Button>
     </div>
