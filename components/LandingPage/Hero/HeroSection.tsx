@@ -1,5 +1,5 @@
 import React from "react";
-import Button from "../Button";
+import Button from "../../Button";
 import Image from "next/image";
 import { CiLocationArrow1, CiPen } from "react-icons/ci";
 import { FaPencilRuler } from "react-icons/fa";
