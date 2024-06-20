@@ -1,6 +1,7 @@
 import BrainStormSection from "@/components/BrainStorm/BrainStormSection";
 import HeroSection from "@/components/Hero/HeroSection";
 import Navbar from "@/components/Navbar";
+import RealTimeNotesSection from "@/components/RealTimeNotes/RealTimeNotesSection";
 import Image from "next/image";
 
 export default function Home() {
@@ -25,8 +26,11 @@ export default function Home() {
           <HeroSection />
         </section>
       
-        <section className="px-14 py-5 h-screen " >
+        <section className="pl-14 py-5 h-screen " >
           <BrainStormSection/>
+        </section>
+        <section className="pl-14 py-5 h-screen " >
+          <RealTimeNotesSection/>
         </section>
       </main>
     </>
