@@ -22,7 +22,7 @@ const HeroSection = () => {
         </h1>
         <div >
 
-        <Button href="/auth/register" className="py-4 px-10 bg-gray-600 hover:bg-gray-950 transition-all"  >
+        <Button href="/sign-up" className="py-4 px-10 bg-gray-600 hover:bg-gray-950 transition-all"  >
           Sign Up For Free
         </Button>
         </div>

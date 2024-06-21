@@ -35,7 +35,7 @@ export default function Home() {
         </section>
         <section className="pl-14 py-5 w-full justify-center items-center flex">
 
-        <Button href="/auth/register" className="py-4 w-1/2 px-10 bg-gray-600 hover:bg-gray-950 transition-all"  >
+        <Button href="/sign-up" className="py-4 w-1/2 px-10 bg-gray-600 hover:bg-gray-950 transition-all"  >
           Sign Up For Free
         </Button>
         </section>
