@@ -1,10 +1,11 @@
-import { SignOutButton } from '@clerk/nextjs'
+import { SignOutButton, UserButton } from '@clerk/nextjs'
 import React from 'react'
 
 const page = () => {
   return (
     <div>
-        <SignOutButton redirectUrl='/'/>
+      {/* <SignOutButton redirectUrl='/sign-in' signOutOptions={{redirectUrl:"/sign-in"}}/> */}
+      <UserButton/>
     </div>
   )
 }
