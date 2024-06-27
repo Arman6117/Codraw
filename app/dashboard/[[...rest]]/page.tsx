@@ -5,7 +5,7 @@ const page = () => {
   return (
     <div>
       {/* <SignOutButton redirectUrl='/sign-in' signOutOptions={{redirectUrl:"/sign-in"}}/> */}
-      <UserButton/>
+      <UserButton />
     </div>
   )
 }
