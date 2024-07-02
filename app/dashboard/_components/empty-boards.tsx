@@ -1,9 +1,21 @@
+"use client";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import React from "react";
+import { useApiMutation } from "@/hooks/use-api-mutation";
+import { api } from "@/convex/_generated/api";
+import { useOrganization } from "@clerk/nextjs";
 
 const EmptyBoards = () => {
-  
+  const { mutate, pending } = useApiMutation(api.board.createBoard);
+  const { organization } = useOrganization();
+  const onClick = () => {
+    if (!organization) return;
+    mutate({
+      orgId: organization.id,
+      title: "Untitled",
+    });
+  };
   return (
     <div className="h-full w-full flex flex-col justify-center items-center space-y-2">
       <Image
@@ -17,7 +29,9 @@ const EmptyBoards = () => {
         Try By Creating Your First Organization
       </p>
       <div className="mt-6">
-        <Button size={"lg"}>Create Board</Button>
+        <Button onClick={onClick} disabled={pending} size={"lg"}>
+          Create Board
+        </Button>
       </div>
     </div>
   );
