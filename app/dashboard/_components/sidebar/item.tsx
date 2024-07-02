@@ -23,18 +23,18 @@ const Item = ({ id, name, imageUrl }: itemProps) => {
   };
   return (
     <div className="relative aspect-square">
-        <Hint label={name} side="right" align="start" sideOffset={18}>
-
-      <Image
-        fill
-        alt={name}
-        src={imageUrl}
-        onClick={onClick}
-        className={cn(
-            "rounded-md cursor-pointer opacity-75 hover:opacity-100 transition", isActive && "opacity-100"
-            )}
-            />
-            </Hint>
+      <Hint label={name} side="right" align="start" sideOffset={18}>
+        <Image
+          fill
+          alt={name}
+          src={imageUrl}
+          onClick={onClick}
+          className={cn(
+            "rounded-md cursor-pointer opacity-75 hover:opacity-100 transition",
+            isActive && "opacity-100"
+          )}
+        />
+      </Hint>
     </div>
   );
 };
