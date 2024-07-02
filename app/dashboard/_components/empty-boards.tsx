@@ -5,6 +5,7 @@ import React from "react";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { api } from "@/convex/_generated/api";
 import { useOrganization } from "@clerk/nextjs";
+import { toast } from "sonner";
 
 const EmptyBoards = () => {
   const { mutate, pending } = useApiMutation(api.board.createBoard);
@@ -14,7 +15,13 @@ const EmptyBoards = () => {
     mutate({
       orgId: organization.id,
       title: "Untitled",
-    });
+    })
+      .then((id) => {
+        toast.success("Board created successfully");
+      })
+      .catch((err) => {
+        toast.error("Failed to create board");
+      });
   };
   return (
     <div className="h-full w-full flex flex-col justify-center items-center space-y-2">
