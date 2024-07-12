@@ -7,7 +7,7 @@ interface IRenameModal {
   onOpen: (id: string, title: string) => void;
   onClose: () => void;
   initialValues: typeof defaultValues;
-}
+}                  
 export const useRenameModal = create<IRenameModal>((set) => ({
   isOpen: false,
   initialValues: defaultValues,

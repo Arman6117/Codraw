@@ -13,12 +13,25 @@ export const get = query({
     const boards = await ctx.db
       .query("boards")
       .withIndex("by_org", (q) => q.eq("orgId", args.orgId))
-      .order('desc')
+      .order("desc")
       .collect();
 
+    const boardsWithFavoriteRelation = boards.map((board) => {
+      return ctx.db
+        .query("userFavorite")
+        .withIndex("by_user_board", (q) =>
+          q.eq("userId", identity.subject).eq("boardId", board._id)
+        )
+        .unique()
+        .then((favorite) => {
+          return {
+            ...board,
+            isFavorite: !!favorite,
+          };
+        });
+    });
 
-      return boards;
+    const boardsWithFavoriteBoolean = Promise.all(boardsWithFavoriteRelation);
+    return boardsWithFavoriteBoolean;
   },
-
-  
 });
