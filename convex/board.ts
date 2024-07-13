@@ -44,7 +44,7 @@ export const remove = mutation({
 
     if (!identity) throw new Error("Unauthorized");
 
-    //TODO:Also remove from favorite
+    //TODO:Also remove from favorites
 
     const userId = identity.subject;
 
@@ -80,7 +80,7 @@ export const update = mutation({
   },
 });
 
-export const favorite = mutation({
+export const favorites = mutation({
   args: { id: v.id("boards"), orgId: v.string() },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
@@ -129,7 +129,7 @@ export const unfavorite = mutation({
       )
       .unique();
 
-    if (!existingFavorite) throw new Error("Favorite not found");
+    if (!existingFavorite) throw new Error("Favorites not found");
 
     await ctx.db.delete(existingFavorite._id);
     return board;

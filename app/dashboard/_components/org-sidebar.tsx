@@ -72,7 +72,7 @@ const OrgSidebar = () => {
             query:{favorites:true}
           }} >
             <BiHeart className="h-4 w-4 mr-2" />
-            Favorites
+            favorites
           </Link>
         </Button>
       </div>

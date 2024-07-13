@@ -10,7 +10,7 @@ const EmptyFav = () => {
          width={240}
          height={240}
         />
-        <h2 className='text-3xl font-bold mt-2'>No Favorites</h2>
+        <h2 className='text-3xl font-bold mt-2'>No favorite</h2>
         <p className='text-muted-foreground text-sm mt-2'>Try Favoriting A Board</p>
     </div>
   )

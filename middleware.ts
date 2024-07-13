@@ -4,7 +4,7 @@ import { clerkMiddleware, } from "@clerk/nextjs/server";
 export default clerkMiddleware((auth,req) => {
   const { pathname } = req.nextUrl;
   const userId = auth().userId
-  console.log(auth().userId)
+  
 
   // Redirect authenticated users from the homepage to the dashboard
   if (pathname === '/' && userId) {
