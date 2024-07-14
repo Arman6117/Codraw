@@ -44,7 +44,7 @@ export const remove = mutation({
 
     if (!identity) throw new Error("Unauthorized");
 
-    //TODO:Also remove from favorites
+   
 
     const userId = identity.subject;
 

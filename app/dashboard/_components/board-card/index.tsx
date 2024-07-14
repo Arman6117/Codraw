@@ -52,7 +52,7 @@ const BoardCard = ({
     }
   };
   return (
-    <Link href={`/boards/${id}`}>
+    <Link href={`/board/${id}`}>
       <div className="group border drop-shadow-sm aspect-[100/127] flex flex-col justify-between rounded-lg overflow-hidden ">
         <div className="relative flex-1 bg-fuchsia-50 ">
           <Image src={imageUrl} fill alt={title} className="object-fit" />

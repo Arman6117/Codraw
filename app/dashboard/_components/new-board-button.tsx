@@ -3,6 +3,7 @@
 import { api } from "@/convex/_generated/api";
 import { useApiMutation } from "@/hooks/use-api-mutation";
 import { cn } from "@/lib/utils";
+import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { LuPlus } from "react-icons/lu";
 import { toast } from "sonner";
@@ -13,14 +14,15 @@ interface NewBoardButtonProps {
 }
 const NewBoardButton = ({ orgId, disabled }: NewBoardButtonProps) => {
   const { mutate, pending } = useApiMutation(api.board.createBoard);
-
+ const router = useRouter();
   const onClick = () => {
     mutate({
       orgId: orgId,
       title: "Untitled",
     })
       .then((id) => {
-        toast.success("Board Created"); //TODO:Redirect to /board/{id}
+        toast.success("Board Created"); 
+        router.push(`/board/${id}`)
       })
       .catch((err) => {
         throw Error(err);
