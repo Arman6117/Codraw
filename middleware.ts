@@ -12,7 +12,7 @@ export default clerkMiddleware((auth,req) => {
   }
 
   // Protect /dashboard route
-  if (pathname.startsWith('/dashboard') && !userId) {
+  if (pathname.startsWith('/dashboard/*') && !userId) {
     return NextResponse.redirect(new URL('/', req.url));
   }
 

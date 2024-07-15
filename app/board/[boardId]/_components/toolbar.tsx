@@ -43,3 +43,9 @@ const Toolbar = () => {
 };
 
 export default Toolbar;
+
+Toolbar.Skeleton = function ToolbarSkeleton() {
+  return (
+    <div className="absolute flex justify-center items-center top-2 md:left-[13%] shadow-md shadow-slate-400 h-10 px-4 rounded-full bg-white"/>
+  );
+};

@@ -5,7 +5,10 @@ import Info from "./info";
 import Participants from "./participants";
 import UndoRedo from "./undo-redo-button";
 
-const Canvas = () => {
+interface CanvasProps {
+  boardId: string;
+}
+const Canvas = ({boardId}:CanvasProps) => {
   return (
     <div className="h-screen flex  w-full relative bg-[#f9f4fa] touch-none ">
       <Logo />
