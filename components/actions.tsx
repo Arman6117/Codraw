@@ -14,15 +14,17 @@ import { api } from "@/convex/_generated/api";
 import { Button } from "./ui/button";
 import ConfirmModal from "./confiirm-modal";
 import { useRenameModal } from "@/store/use-rename-modal";
+import { cn } from "@/lib/utils";
 
 interface ActionsProps {
+  className?:string
   children: React.ReactNode;
   side?: DropdownMenuContentProps["side"];
   sideOffset?: DropdownMenuContentProps["sideOffset"];
   id: string;
   title: string;
 }
-const Actions = ({ children, id, side, sideOffset, title }: ActionsProps) => {
+const Actions = ({className, children, id, side, sideOffset, title }: ActionsProps) => {
   const { mutate, pending } = useApiMutation(api.board.remove);
   const { onOpen } = useRenameModal();
   const copyLink = () => {
@@ -41,7 +43,7 @@ const Actions = ({ children, id, side, sideOffset, title }: ActionsProps) => {
       <DropdownMenuTrigger asChild>{children}</DropdownMenuTrigger>
       <DropdownMenuContent
         onClick={(e) => e.stopPropagation()}
-        className="w-60  absolute outline-none "
+        className={cn("w-60  absolute  outline-none ", className)}
         side={side}
         sideOffset={sideOffset}
       >

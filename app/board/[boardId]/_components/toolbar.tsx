@@ -13,7 +13,7 @@ const Toolbar = () => {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <div className="absolute flex justify-center items-center top-2 md:left-[13%] shadow-md shadow-slate-400 h-10 px-4 rounded-full border-2 border-pink-600  bg-white">
+        <div className="absolute flex justify-center items-center left-[60%] top-2 md:left-[40%] shadow-md shadow-slate-400 h-10 px-4 rounded-full border-2 border-pink-600  bg-white">
           <LuPencil className="h-5 w-5 text-gray cursor-pointer" />
         </div>
       </DropdownMenuTrigger>
@@ -44,8 +44,8 @@ const Toolbar = () => {
 
 export default Toolbar;
 
-Toolbar.Skeleton = function ToolbarSkeleton() {
+export const ToolbarSkeleton = () => {
   return (
-    <div className="absolute flex justify-center items-center top-2 md:left-[13%] shadow-md shadow-slate-400 h-10 px-4 rounded-full bg-white"/>
+    <div className="absolute flex justify-center items-center top-2 md:left-[13%] shadow-md shadow-slate-400 h-10 px-4 rounded-full bg-white" />
   );
 };

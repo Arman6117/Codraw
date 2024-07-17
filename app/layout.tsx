@@ -5,7 +5,7 @@ import { ConvexClientProvider } from "@/provider/convex-client-provider";
 import { Toaster } from "sonner";
 import { ModalProvider } from "@/provider/modal-provider";
 
-const inter = Comic_Neue({ weight: ["300", "400", "700"], subsets: ["latin"] });
+const comic = Comic_Neue({ weight: ["300", "400", "700"], subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-        <body className={inter.className}>
+        <body className={comic.className}>
       <ConvexClientProvider>
         <Toaster/>
         <ModalProvider/>

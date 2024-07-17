@@ -4,7 +4,7 @@ import React from "react";
 
 const Logo = () => {
   return (
-    <div className="absolute md:inline hidden top-2 left-2  h-12 w-32   ">
+    <div className="absolute md:inline hidden top-2 right-2  h-12 w-32   ">
       <Link href={"/dashboard"}>
         <Image
           alt="Logo"

@@ -11,15 +11,13 @@ interface CanvasProps {
   boardId: string;
 }
 const Canvas = ({ boardId }: CanvasProps) => {
-  const info = useSelf((me) => me.info);
-  console.log(info);
   return (
     <div className="h-screen flex  w-full relative bg-[#f9f4fa] touch-none ">
       <Logo />
       <Toolbar />
       <UndoRedo />
       <Participants />
-      <Info />
+      <Info boardId={boardId} />
     </div>
   );
 };
