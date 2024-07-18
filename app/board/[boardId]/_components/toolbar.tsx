@@ -5,13 +5,10 @@ import {
   DropdownMenuTrigger,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-
 import { DropdownMenuArrow } from "@radix-ui/react-dropdown-menu";
-import React from "react";
-import { FaToolbox, FaTools } from "react-icons/fa";
+
 import {
   LuCircle,
-  LuCircleEllipsis,
   LuMousePointer2,
   LuPenTool,
   LuPencil,
@@ -19,10 +16,15 @@ import {
   LuStickyNote,
   LuType,
 } from "react-icons/lu";
-import { MdPanTool } from "react-icons/md";
-import ToolButton from "./tool-button";
 
-const Toolbar = () => {
+import ToolButton from "./tool-button";
+import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
+
+interface ToolbarProps {
+  canvasState: CanvasState;
+  setCanvasState: (newState: CanvasState) => void;
+}
+const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
   return (
     <DropdownMenu>
       <Hint label="Toolbar" side="bottom" sideOffset={10}>
@@ -39,8 +41,18 @@ const Toolbar = () => {
             <ToolButton
               icon={LuMousePointer2}
               label="Select"
-              onClick={() => {}}
-              isActive={true}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.None,
+                })
+              }
+              isActive={
+                canvasState.mode === CanvasMode.None ||
+                canvasState.mode === CanvasMode.Pressing ||
+                canvasState.mode === CanvasMode.Resizing ||
+                canvasState.mode === CanvasMode.SelectionNet ||
+                canvasState.mode === CanvasMode.Translating
+              }
             />
           </DropdownMenuItem>
 
@@ -48,40 +60,76 @@ const Toolbar = () => {
             <ToolButton
               icon={LuType}
               label="Text"
-              onClick={() => {}}
-              isActive={false}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.Inserting,
+                  layerType: LayerType.Text,
+                })
+              }
+              isActive={
+                canvasState.mode === CanvasMode.Inserting &&
+                canvasState.layerType === LayerType.Text
+              }
             />
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuStickyNote}
               label="Sticky Note"
-              onClick={() => {}}
-              isActive={false}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.Inserting,
+                  layerType: LayerType.Note,
+                })
+              }
+              isActive={
+                canvasState.mode === CanvasMode.Inserting &&
+                canvasState.layerType === LayerType.Note
+              }
             />
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuRectangleHorizontal}
               label="Rectangle"
-              onClick={() => {}}
-              isActive={false}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.Inserting,
+                  layerType: LayerType.Rectangle,
+                })
+              }
+              isActive={
+                canvasState.mode === CanvasMode.Inserting &&
+                canvasState.layerType === LayerType.Rectangle
+              }
             />
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuCircle}
               label="Circle"
-              onClick={() => {}}
-              isActive={false}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.Inserting,
+                  layerType: LayerType.Circle,
+                })
+              }
+              isActive={
+                canvasState.mode === CanvasMode.Inserting &&
+                canvasState.layerType === LayerType.Circle
+              }
             />
           </DropdownMenuItem>
           <DropdownMenuItem className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuPencil}
               label="Pen"
-              onClick={() => {}}
-              isActive={false}
+              onClick={() =>
+                setCanvasState({
+                  mode: CanvasMode.Pencil,
+                })
+              }
+              isActive={canvasState.mode === CanvasMode.Pencil}
             />
           </DropdownMenuItem>
         </div>
