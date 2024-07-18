@@ -1,3 +1,4 @@
+import { Camera } from "@/types/canvas";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -5,40 +6,27 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
-function getRandomColor() {
-  const letters = '0123456789ABCDEF';
-  let color = '#';
-  let isWhiteish = true;
-
-  while (isWhiteish) {
-      color = '#';
-      for (let i = 0; i < 6; i++) {
-          color += letters[Math.floor(Math.random() * 16)];
-      }
-      
-     
-      const r = parseInt(color.substring(1, 3), 16);
-      const g = parseInt(color.substring(3, 5), 16);
-      const b = parseInt(color.substring(5, 7), 16);
-
-    
-      if (r < 200 || g < 200 || b < 200) {
-          isWhiteish = false;
-      }
-  }
-  
-  return color;
-}
-
-function generateRandomColors(numColors: number) {
-  const colorsArray = [];
-  for (let i = 0; i < numColors; i++) {
-    colorsArray.push(getRandomColor());
-  }
-  return colorsArray;
-}
+const COLORS = [
+  "#FC0088",
+  "#00FC16",
+  "#FF0000 ",
+  "#C70039",
+  "#FF6200 ",
+  "#00E7FF ",
+  "#DB2777 ",
+  "#7C3AED ",
+];
 
 export const connectionIdToColor = (connectionId: number): string => {
-  const COLORS = generateRandomColors(10);
   return COLORS[connectionId % COLORS.length];
 };
+
+export function pointerEventToCanvasPoint(
+  camera: Camera,
+  e: React.PointerEvent
+) {
+  return {
+    x: Math.round(e.clientX) - camera.x,
+    y: Math.round(e.clientY) - camera.y,
+  };
+}

@@ -17,9 +17,9 @@ export const Room = ({
   fallback: React.ReactNode;
 }) => {
   return (
-    <LiveblocksProvider authEndpoint="/api/liveblocks-auth">
-      <RoomProvider id={roomId} initialPresence={{}}>
-        <ClientSideSuspense fallback={fallback}>
+    <LiveblocksProvider authEndpoint="/api/liveblocks-auth" throttle={16}>
+      <RoomProvider id={roomId} initialPresence={{cursor:null}}>
+        <ClientSideSuspense fallback={fallback}  >
           {() => children}
         </ClientSideSuspense>
       </RoomProvider>
