@@ -1,3 +1,4 @@
+export type Layer = RectangleLayer | NoteLayer | CircleLayer | PathLayer | TextLayer
 export type Colors = {
   r: number;
   g: number;

@@ -16,14 +16,14 @@ const UndoRedo = ({ canRedo, canUndo, redo, undo }: UndoRedoProps) => {
         label="Undo"
         icon={LuUndo2}
         isDisabled={!canUndo}
-        onClick={() => {}}
+        onClick={undo}
       />
 
       <ToolButton
         label="Redo"
         icon={LuRedo2}
         isDisabled={!canRedo}
-        onClick={() => {}}
+        onClick={redo}
       />
     </div>
   );

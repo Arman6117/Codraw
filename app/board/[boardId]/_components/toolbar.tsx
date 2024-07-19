@@ -1,3 +1,4 @@
+'use client'
 import Hint from "@/components/hint";
 import {
   DropdownMenu,
@@ -19,14 +20,19 @@ import {
 
 import ToolButton from "./tool-button";
 import { CanvasMode, CanvasState, LayerType } from "@/types/canvas";
+import { useRef, useState } from "react";
 
 interface ToolbarProps {
   canvasState: CanvasState;
   setCanvasState: (newState: CanvasState) => void;
 }
 const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
+  const [open, setOpen] = useState(false);
+
+
+
   return (
-    <DropdownMenu>
+    <DropdownMenu >
       <Hint label="Toolbar" side="bottom" sideOffset={10}>
         <DropdownMenuTrigger asChild>
           <div className="absolute flex justify-center items-center left-[60%] top-2 md:left-[40%] shadow-md shadow-slate-400 h-10 px-4 rounded-full border-2 border-pink-600  bg-white">
@@ -37,7 +43,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
       <DropdownMenuContent className="mt-3 md:min-w-[8rem] md:px-2  min-w-1 pr-2  py-2 flex space-x-3 shadow-md shadow-slate-400  rounded-full  ">
         <DropdownMenuArrow className="relative -top-3  " />
         <div className="flex md:flex-row flex-col justify-center items-center">
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem  onSelect={(e)=> e.preventDefault()}  className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuMousePointer2}
               label="Select"
@@ -56,7 +62,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
             />
           </DropdownMenuItem>
 
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem onSelect={(e)=> e.preventDefault()} className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuType}
               label="Text"
@@ -72,7 +78,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
               }
             />
           </DropdownMenuItem>
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem onSelect={(e)=> e.preventDefault()}  className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuStickyNote}
               label="Sticky Note"
@@ -88,7 +94,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
               }
             />
           </DropdownMenuItem>
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem onSelect={(e)=> e.preventDefault()}  className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuRectangleHorizontal}
               label="Rectangle"
@@ -104,7 +110,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
               }
             />
           </DropdownMenuItem>
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem   onSelect={(e)=> e.preventDefault()}  className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuCircle}
               label="Circle"
@@ -120,7 +126,7 @@ const Toolbar = ({ canvasState, setCanvasState }: ToolbarProps) => {
               }
             />
           </DropdownMenuItem>
-          <DropdownMenuItem className="rounded-full focus:bg-white">
+          <DropdownMenuItem onSelect={(e)=> e.preventDefault()}  className="rounded-full focus:bg-white">
             <ToolButton
               icon={LuPencil}
               label="Pen"
