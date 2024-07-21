@@ -37,6 +37,7 @@ import {
 import { LiveObject } from "@liveblocks/client";
 import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
+import { SelectionTools } from "./selection-tools";
 
 const MAX_LAYERS = 100;
 interface CanvasProps {
@@ -247,7 +248,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
 
       history.resume();
     },
-    [camera, canvasState, history, insertLayer]
+    [camera, canvasState, history, insertLayer, unselectLayer]
   );
 
   const selections = useOthersMapped((other) => other.presence.selection);
@@ -289,7 +290,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
     [setCanvasState, camera, history, canvasState.mode]
   );
   return (
-    <div className="h-screen flex  w-full relative bg-neutral-100 touch-none ">
+    <div className="h-screen flex  w-screen relative bg-neutral-100 touch-none ">
       <Logo />
       <Toolbar canvasState={canvasState} setCanvasState={setCanvasState} />
       <UndoRedo
@@ -301,6 +302,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
       <Participants />
       <Info boardId={boardId} />
 
+      <SelectionTools camera={camera} setLastUsedColor={setLastUsedColor} />
       <svg
         className="h-[100vh] w-[100vw]"
         onWheel={onWheel}
