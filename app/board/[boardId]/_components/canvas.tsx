@@ -113,7 +113,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
           break;
         case LayerType.Note:
           layer = {
-            type: LayerType.Path,
+            type: LayerType.Note,
             x: position.x,
             y: position.y,
             height: 100,

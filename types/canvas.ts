@@ -48,7 +48,7 @@ export type PathLayer = {
   value?: string;
 };
 export type NoteLayer = {
-  type: LayerType.Path;
+  type: LayerType.Note;
   x: number;
   y: number;
   height: number;
