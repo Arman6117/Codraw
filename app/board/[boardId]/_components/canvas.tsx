@@ -1,5 +1,5 @@
 "use client";
-import React, { useCallback, useMemo, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { nanoid } from "nanoid";
 import Logo from "./logo";
 import Toolbar from "./toolbar";
@@ -43,6 +43,8 @@ import { LayerPreview } from "./layer-preview";
 import { SelectionBox } from "./selection-box";
 import { SelectionTools } from "./selection-tools";
 import { Path } from "./path";
+import { useDisableScrollBounce } from "@/hooks/use-disable-scroll-bounce";
+import { useDeleteLayer } from "@/hooks/use-delete-layer";
 
 const MAX_LAYERS = 100;
 interface CanvasProps {
@@ -61,6 +63,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
     g: 255,
     b: 255,
   });
+  useDisableScrollBounce();
   const history = useHistory();
   const canRedo = useCanRedo();
   const canUndo = useCanUndo();
@@ -329,7 +332,7 @@ const Canvas = ({ boardId }: CanvasProps) => {
 
       if (canvasState.mode === CanvasMode.Pencil) {
         startDrawing(point, e.pressure);
-        return
+        return;
       }
 
       setCanvasState({ mode: CanvasMode.Pressing, origin: point });
@@ -407,6 +410,31 @@ const Canvas = ({ boardId }: CanvasProps) => {
     },
     [setCanvasState, camera, history, canvasState.mode]
   );
+
+  const deleteLayer = useDeleteLayer();
+
+  useEffect(() => {
+    function onKeyDown(e: KeyboardEvent) {
+      switch (e.key) {
+        // case 'Backspace': 
+        // deleteLayer();
+        // break
+        case "z": {
+          if (e.ctrlKey || e.metaKey) {
+            if (e.shiftKey) {
+              history.redo();
+            } else {
+              history.undo();
+            }
+            break;
+          }
+        }
+      }
+    }
+    document.addEventListener('keydown', onKeyDown)
+
+    return ()=> {document.removeEventListener('keydown', onKeyDown)}
+  }, [deleteLayer,history]);
   return (
     <div className="h-screen flex  w-screen relative bg-neutral-100 touch-none ">
       <Logo />
