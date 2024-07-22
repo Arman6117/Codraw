@@ -4,6 +4,7 @@ import { LayerType } from "@/types/canvas";
 import { useStorage } from "@liveblocks/react/suspense";
 import { memo } from "react";
 import Rectangle from "./rectangle";
+import { Ellipse } from "./ellipse";
 
 interface LayerPreviewProps {
   layerId: string;
@@ -17,6 +18,15 @@ export const LayerPreview = memo(
     if (!layer) return null;
 
     switch (layer.type) {
+      case LayerType.Circle :
+        return(
+          <Ellipse
+            id={layerId}
+            selectionColor={selectionColor}
+            onPointerDown={onLayerPointerDown}
+            layer={layer}
+          />
+        )
       case LayerType.Rectangle:
       
         return (
