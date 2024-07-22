@@ -39,6 +39,8 @@ export const Note = ({
   const handleValueChange = (e: ContentEditableEvent) => {
     updateTextValue(e.target.value);
   };
+
+
   return (
     <foreignObject
     x={x}
